@@ -5,11 +5,14 @@ import logger from 'middlewares/logger.middleware';
 import error from 'middlewares/error.middleware';
 import ChatRouter from 'routers/chat.router';
 import HealthRouter from 'routers/health.router';
+import { IDatabase } from 'interfaces/database';
 
 class Server {
+  db: IDatabase;
   #engine: Express;
 
-  constructor() {
+  constructor(database: IDatabase) {
+    this.db = database;
     this.#engine = express();
   }
 

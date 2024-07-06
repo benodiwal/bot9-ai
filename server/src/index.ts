@@ -4,14 +4,7 @@ import Database from 'apps/database';
 
 parseEnv();
 
-const server = new Server();
 const database = new Database();
+const server = new Server(database);
 
-database
-  .init()
-  .then(() => {
-    server.start();
-  })
-  .catch((error) => {
-    console.error('Unable to connect to database: ', error);
-  });
+server.start();

@@ -1,21 +1,15 @@
-import { Sequelize } from '@sequelize/core';
-import { Conversation } from 'models/conversation.model';
+import { PrismaClient } from '@prisma/client';
+import getEnvVar from 'env/index';
+import { txClient } from 'interfaces/database';
 
-class Database {
-  #sequelize: Sequelize;
-
-  constructor() {
-    this.#sequelize = new Sequelize({
-      dialect: 'sqlite',
-      database: 'bot9-ai',
-      storage: 'sequelize.sqlite',
-      models: [Conversation],
-    });
-  }
-
-  init() {
-    return this.#sequelize.authenticate();
+export default class Database {
+  client: PrismaClient | txClient;
+  constructor(txClient?: txClient) {
+    if (txClient != undefined) {
+      this.client = txClient;
+      return;
+    }
+    this.client = new PrismaClient({ datasourceUrl: getEnvVar('DATABASE_URL') });
+    console.log('database: connection successfull\n');
   }
 }
-
-export default Database;
