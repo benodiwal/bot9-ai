@@ -1,11 +1,9 @@
-import { Request, Response } from "express";
+import { Request, Response } from 'express';
 
 class ChatController {
-    post() {
-        return [
-            (_req: Request, _res: Response) => {}
-        ]
-    }
+  post() {
+    return [(_req: Request, _res: Response) => {}];
+  }
 }
 
 export default ChatController;

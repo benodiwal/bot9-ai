@@ -1,19 +1,21 @@
-import { Sequelize } from '@sequelize/core'
-import { SqliteDialect } from '@sequelize/sqlite3';
+import { Sequelize } from '@sequelize/core';
+import { Conversation } from 'models/conversation.model';
 
 class Database {
-    #sequelize: Sequelize;
+  #sequelize: Sequelize;
 
-    constructor() {
-        this.#sequelize = new Sequelize({
-            dialect: SqliteDialect,
-            storage: 'sequelize.sqlite'
-        });
-    }
+  constructor() {
+    this.#sequelize = new Sequelize({
+      dialect: 'sqlite',
+      database: 'bot9-ai',
+      storage: 'sequelize.sqlite',
+      models: [Conversation],
+    });
+  }
 
-    init() {
-        return this.#sequelize.authenticate();
-    }
+  init() {
+    return this.#sequelize.authenticate();
+  }
 }
 
 export default Database;

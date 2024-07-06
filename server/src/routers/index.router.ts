@@ -1,4 +1,4 @@
-import { Router, Express, Handler, Response, Request} from 'express';
+import { Router, Express, Handler, Response, Request } from 'express';
 
 export default abstract class AbstractRouter {
   #router: Router;

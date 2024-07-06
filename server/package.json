@@ -7,6 +7,7 @@
     "start": "node dist/index.js",
     "build": "tsc; tscpaths -p tsconfig.json -s src -o dist",
     "lint": "eslint src/**/*.ts",
+    "lint:fix": "eslint -c .eslintrc.js . --fix --ext .ts",
     "dev": "nodemon --watch './src/**/*.ts' --exec ts-node ./src/index.ts",
     "test": "jest"
   },
@@ -25,13 +26,14 @@
   },
   "homepage": "https://github.com/benodiwal/bot9-ai#readme",
   "dependencies": {
-    "@sequelize/sqlite3": "^7.0.0-alpha.41",
+    "@sequelize/core": "^7.0.0-alpha.37",
     "axios": "^1.7.2",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "morgan": "^1.10.0",
     "socket.io": "^4.7.5",
+    "sqlite3": "^5.1.7",
     "zod": "^3.22.4",
     "zod-express-middleware": "^1.4.0"
   },
@@ -55,6 +57,6 @@
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
     "tscpaths": "^0.0.9",
-    "typescript": "^5.4.5"
+    "typescript": "^5.5.3"
   }
 }
