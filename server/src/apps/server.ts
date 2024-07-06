@@ -3,6 +3,7 @@ import cors from 'cors';
 import getEnvVar from 'env/index';
 import logger from 'middlewares/logger.middleware';
 import ChatRouter from 'routers/chat.router';
+import HealthRouter from 'routers/health.router';
 
 class Server {
     #engine: Express;
@@ -18,6 +19,9 @@ class Server {
     }
 
     #registerHandlers() {
+      const healthRouter = new HealthRouter(this.#engine, '');
+      healthRouter.register();
+
       const chatRouter = new ChatRouter(this.#engine, '/chat');
       chatRouter.register();
     }
