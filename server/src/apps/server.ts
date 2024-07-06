@@ -11,9 +11,9 @@ class Server {
     }
 
     #registerMiddlwares() {
-      this.#engine.use(logger);
       this.#engine.use(express.json());
-      this.#engine.use(cors());
+      this.#engine.use(cors({ origin: getEnvVar('CLIENT_ORIGIN_URL') }));
+      this.#engine.use(logger());
     }
 
     #registerHandlers() {}

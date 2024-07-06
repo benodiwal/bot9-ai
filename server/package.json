@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/benodiwal/bot9-ai#readme",
   "dependencies": {
+    "@sequelize/sqlite3": "^7.0.0-alpha.41",
     "axios": "^1.7.2",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
