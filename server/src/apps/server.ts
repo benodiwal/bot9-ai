@@ -6,6 +6,7 @@ import error from 'middlewares/error.middleware';
 import ChatRouter from 'routers/chat.router';
 import HealthRouter from 'routers/health.router';
 import { IDatabase } from 'interfaces/database';
+import Context from 'database/Context';
 
 class Server {
   db: IDatabase;
@@ -23,10 +24,11 @@ class Server {
   }
 
   #registerHandlers() {
-    const healthRouter = new HealthRouter(this.#engine, '');
-    healthRouter.register();
+    const ctx = new Context(this.db);
+    const healthRouter = new HealthRouter(ctx, this.#engine, '');
+    const chatRouter = new ChatRouter(ctx, this.#engine, '/chat');
 
-    const chatRouter = new ChatRouter(this.#engine, '/chat');
+    healthRouter.register();
     chatRouter.register();
   }
 

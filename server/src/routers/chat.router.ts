@@ -3,7 +3,7 @@ import AbstractRouter from './index.router';
 
 class ChatRouter extends AbstractRouter {
   registerRoutes(): void {
-    const chatController = new ChatController();
+    const chatController = new ChatController(this.ctx);
     this.registerPOST('/', chatController.post());
   }
 }

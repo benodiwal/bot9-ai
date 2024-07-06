@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
+import AbstractController from './index.controller';
 
-class HealthController {
+class HealthController extends AbstractController {
   get() {
     return [
       (_req: Request, res: Response) => {
