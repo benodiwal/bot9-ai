@@ -2,6 +2,7 @@ import express, { Express } from 'express';
 import cors from 'cors';
 import getEnvVar from 'env/index';
 import logger from 'middlewares/logger.middleware';
+import error from 'middlewares/error.middleware';
 import ChatRouter from 'routers/chat.router';
 import HealthRouter from 'routers/health.router';
 
@@ -29,6 +30,7 @@ class Server {
   start() {
     this.#registerMiddlwares();
     this.#registerHandlers();
+    this.#engine.use(error());
     this.#engine.listen(parseInt(getEnvVar('PORT')), () => {
       console.log(`\nServer listening on ${getEnvVar('PORT')}`);
     });
